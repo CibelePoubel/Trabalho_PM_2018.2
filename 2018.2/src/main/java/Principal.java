@@ -25,10 +25,12 @@ public class Principal {
         	
     	Saida txtSaida = new Saida();  // Cria um objeto da classe Saida para posterior escrita da saída do programa
     	Log txtLog = new Log();  // Cria um objeto da classe Log para posterior escrita do log de erros do programa
-    	ArrayList<XML> listaDeCurriculos = new ArrayList<XML>();
+    	ArrayList<XML> listaDeCurriculos = new ArrayList<XML>();  // Lista que guarda cada um dos arquivos XML contendo os currículos
     	String caminhoArquivo = null, caminhoLog = null;  // Strings que guardam o caminho especificado pelo usuário para salvamento dos arquivos
-    	int contadorCurriculos = 0;  // Guarda quantos currículos ja foram analisados para identificação
-    	int parametroAtual, auxCurriculos = 0;  
+    	int contadorCurriculos = 0;  // Guarda quantos currículos foram importados para o programa
+    	int parametroAtual;  // Guarda o parâmetro que está sendo atualmente lido
+    	int auxCurriculos = 0;  // Variável auxiliar para percorrer a lista de currículos para que seja escrito no arquivo de saída a pontuação por semestres sem reprovação
+    	boolean modoCompleto, modoVerboso, modoPremios, modoQualis, modoQualisRestritos, modoEventos, modoVinculoUnirio;  // Guardam quais parâmetros foram passados pelo usuário para posterior call dos métodos da classe XML para cálculo da pontuação e exibição restrita aos modos requisitados
     	
     	
     	for(parametroAtual = 0; parametroAtual < args.length; parametroAtual++) {  // FOR para verificar cada um dos parâmetros passados pelo usuário
@@ -42,7 +44,7 @@ public class Principal {
             
             if (args[parametroAtual].equalsIgnoreCase("-l")) {   // Verifica se o parâmetro é igual a -l (ignorando se este for digitado em maiúsculo ou minúsculo). Caso seja, a próxima posição dos argumentos indica o caminho do arquivo de log      	
             	caminhoLog = args[parametroAtual + 1];
-            	txtLog.escreveArquivo(args[parametroAtual + 1], "Erros encontrados na execução do programa:");  // Escreve no arquivo de log         
+            	txtLog.escreveArquivo(args[parametroAtual + 1], "\t Erros encontrados na execução do programa:");  // Escreve no arquivo de log         
             }	
             
             	
@@ -56,10 +58,30 @@ public class Principal {
 					auxCurriculos++;
             	}
             	
-            }
+            if(args[parametroAtual].equalsIgnoreCase("-v"))
+            	modoVerboso = true;
+
+            if(args[parametroAtual].equalsIgnoreCase("-pr"))
+            	modoPremios = true;
+            	
+            if(args[parametroAtual].equalsIgnoreCase("-ar"))
+            	modoQualisRestritos = true;
+            
+            if(args[parametroAtual].equalsIgnoreCase("-anr"))
+            	modoQualis = true;
+            
+            if(args[parametroAtual].equalsIgnoreCase("-pe"))
+            	modoEventos = true;
+            
+            if(args[parametroAtual].equalsIgnoreCase("-vi"))
+            	modoVinculoUnirio = true;
               	            
+            }
+    	
     	}
     	
+    	if(modoPremios == true)
+    
     }
     
 }
