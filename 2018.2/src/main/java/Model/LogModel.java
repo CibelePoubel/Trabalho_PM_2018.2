@@ -1,3 +1,4 @@
+package Model;
 /**
  * 
  * @author Cibele
@@ -19,7 +20,9 @@ import org.xml.sax.SAXException;
 
 public class LogModel extends ArquivoModel {
 
-	
+    /** Método construtor da classe LogModel. Recebe o caminho desejado pelo usuário para salvamento do arquivo .txt de log (erros do programa)
+
+     *   @return void */  
 	public LogModel(String caminhoDoArquivo) {			// Método construtor da classe Log. Recebe o caminho que o usuário especificou para a criação do arquivo txt de log
 		
 		this.caminhoDoArquivo = caminhoDoArquivo;
@@ -28,7 +31,9 @@ public class LogModel extends ArquivoModel {
 	
 	
 	
-	
+    /** Método sobrescrito da classe Arquivo que efetua a escrita da String passada no arquivo .txt de log
+
+     *   @return void */ 
 	@Override
 	public void escreveArquivo(String texto) throws IOException {  			  // Método sobrescrito da classe Arquivo que recebe o caminho que o usuário indicou para salvamento do log de erros e o texto a ser adicionado.
 		
@@ -42,7 +47,9 @@ public class LogModel extends ArquivoModel {
 	
 	
 	
+    /** Método que retorna o caminho de salvamento/leitura do arquivo de log 
 
+     *   @return String - CaminhoDoArquivo */  
 	@Override
 	public String getCaminhoDoArquivo() {		  // Método que retorna o caminho onde se encontra o arquivo de Log
 		
@@ -50,4 +57,6 @@ public class LogModel extends ArquivoModel {
 		
 	}
 
+	
+	
 }

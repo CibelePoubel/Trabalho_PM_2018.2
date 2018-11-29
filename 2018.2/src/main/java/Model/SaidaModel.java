@@ -1,3 +1,4 @@
+package Model;
 /**
  * 
  * @author Cibele
@@ -13,7 +14,9 @@ import java.io.Writer;
 
 public class SaidaModel extends ArquivoModel {
 
-	
+    /** Método construtor da classe SaidaModel. Recebe o caminho desejado pelo usuário para salvamento do arquivo .txt de saída (resultado do programa)
+
+     *   @return void */  
 	public SaidaModel(String caminhoDoArquivo) {			// Método construtor da classe Saida. Recebe o caminho que o usuário especificou para a criação do arquivo txt de saída
 		
 		this.caminhoDoArquivo = caminhoDoArquivo;
@@ -22,8 +25,9 @@ public class SaidaModel extends ArquivoModel {
 	
 	
 	
-	
-	
+    /** Método sobrescrito da classe Arquivo que efetua a escrita da String passada no arquivo .txt de saída
+
+     *   @return void */ 
 	@Override
 	public void escreveArquivo(String texto) throws IOException {  		     // Método sobrescrito da classe Arquivo que recebe o caminho que o usuário indicou para salvamento do arquivo e o texto a ser adicionado.
 			
@@ -37,13 +41,16 @@ public class SaidaModel extends ArquivoModel {
 	
 	
 	
-	
-	
+    /** Método que retorna o caminho de salvamento/leitura do arquivo de saída
+
+     *   @return String - CaminhoDoArquivo */  
 	@Override
 	public String getCaminhoDoArquivo() {		  // Método que retorna o caminho onde se encontra o arquivo de saída
 		
 		return caminhoDoArquivo;
 		
 	}
+	
+	
 	
 }

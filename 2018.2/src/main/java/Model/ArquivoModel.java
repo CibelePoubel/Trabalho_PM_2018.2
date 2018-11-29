@@ -1,3 +1,4 @@
+package Model;
 /**
  * 
  * @author Cibele
@@ -14,10 +15,20 @@ import org.xml.sax.SAXException;
 
 public abstract class ArquivoModel {
 	
-	protected String caminhoDoArquivo;
+	protected String caminhoDoArquivo;			// Variável que guarda a String de caminho de salvamento/leitura do arquivo
 		
+	
+    /** Método que efetua a escrita da String passada no arquivo
+
+     *   @return void */ 
 	public abstract void escreveArquivo(String texto) throws IOException;       // Método abstrato que é sobrescrito nas classes filhas que define como deve o padrão de escrita de arquivos.
 	
+	
+    /** Método que retorna o caminho de salvamento/leitura do arquivo 
+
+     *   @return String - CaminhoDoArquivo */  
 	public abstract String getCaminhoDoArquivo();  	    // Método que retorna o caminho onde se encontra o arquivo
+	
+	
 	
 }

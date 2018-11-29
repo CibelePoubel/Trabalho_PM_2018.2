@@ -1,3 +1,4 @@
+package Model;
 /**
  * 
  * @author Cibele
@@ -18,23 +19,23 @@ public class CandidatoModel {
 	private int semestresSemReprovacao = 0;
 	private String nomeCandidato;
 	private int pontuacaoTotal = 0, pontuacaoSemestresSemReprovacao = 0, pontuacaoPremios = 0, pontuacaoArtigos = 0, pontuacaoEventos = 0, pontuacaoVinculoUnirio = 0;
-	private XMLModel curriculo = null;
+	private XMLModel xml = null;
 	
 	
 	public CandidatoModel(String caminhoXML, int semestresSemReprovacao ) throws SAXException, IOException, ParserConfigurationException {			// Método construtor da classe Log. Recebe o caminho que o usuário especificou para a criação do arquivo txt de log
 		
 		this.semestresSemReprovacao = semestresSemReprovacao;
 		
-		curriculo = new XMLModel(caminhoXML);
+		xml = new XMLModel(caminhoXML);
 			
 	}
 
 	
 	
+	
 	public int getPontuacaoSemestresSemReprovacao() {
 		return pontuacaoSemestresSemReprovacao;
 	}
-
 
 
 
@@ -46,11 +47,9 @@ public class CandidatoModel {
 
 
 
-
 	public int getPontuacaoPremios() {
 		return pontuacaoPremios;
 	}
-
 
 
 
@@ -62,14 +61,11 @@ public class CandidatoModel {
 
 
 
-
-
 	public int getPontuacaoArtigos() {
 		return pontuacaoArtigos;
 	}
 
 
-	
 	
 
 	public void setPontuacaoArtigos(int pontuacaoArtigos) {
@@ -79,11 +75,9 @@ public class CandidatoModel {
 
 
 	
-	
 	public int getPontuacaoEventos() {
 		return pontuacaoEventos;
 	}
-
 
 
 
@@ -95,11 +89,9 @@ public class CandidatoModel {
 
 
 
-
 	public int getPontuacaoVinculoUnirio() {
 		return pontuacaoVinculoUnirio;
 	}
-
 
 
 
@@ -111,7 +103,6 @@ public class CandidatoModel {
 
 
 
-
 	public void setSemestresSemReprovacao(int semestresSemReprovacao) {
 		this.semestresSemReprovacao = semestresSemReprovacao;
 	}
@@ -119,7 +110,6 @@ public class CandidatoModel {
 
 
 	
-
 	public int getSemestresSemReprovacao() {
 		
 		return semestresSemReprovacao;
@@ -135,10 +125,10 @@ public class CandidatoModel {
 	
 	
 	
+	
 	public int getPontuacaoTotal() {
 		return pontuacaoTotal;
 	}
-	
 	
 	
 	
@@ -157,9 +147,10 @@ public class CandidatoModel {
 	
 
 
-	public XMLModel getCurriculo() {
-		return curriculo;
+	public XMLModel getXML() {
+		return xml;
 	}
 		
+	
 	
 }

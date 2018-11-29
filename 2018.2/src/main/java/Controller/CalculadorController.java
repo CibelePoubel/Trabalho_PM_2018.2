@@ -1,3 +1,4 @@
+package Controller;
 /**
  * 
  * @author Cibele
@@ -13,6 +14,10 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import Model.CandidatoModel;
+import Model.LogModel;
+import Model.SaidaModel;
+
 public class CalculadorController {
 	
 	private SaidaModel txtSaida = null;
@@ -21,6 +26,7 @@ public class CalculadorController {
 	
 	private ArrayList<CandidatoModel> listaDeCandidatos = null;
 		
+	
 	
 	
 	public CalculadorController(SaidaModel txtSaida, LogModel txtLog, ArrayList<CandidatoModel> listaDeCandidatos, boolean modoCompleto, boolean modoVerboso, boolean modoPremios, boolean modoArtigos, boolean modoEventos, boolean modoVinculoUnirio) throws IOException {
@@ -32,7 +38,7 @@ public class CalculadorController {
 		
 		for(int auxCandidatos = 0; auxCandidatos < listaDeCandidatos.size(); auxCandidatos++) {
 			
-			NodeList rootNodes = listaDeCandidatos.get(auxCandidatos).getCurriculo().getNos().getElementsByTagName("CURRICULO-VITAE");	
+			NodeList rootNodes = listaDeCandidatos.get(auxCandidatos).getXML().getCurriculo().getElementsByTagName("CURRICULO-VITAE");	
 			Node rootNode = rootNodes.item(0);
 			Element rootElement = (Element) rootNode;
 			
@@ -54,6 +60,7 @@ public class CalculadorController {
 		}
 		
 	}
+	
 	
 	
 	
@@ -89,7 +96,7 @@ public class CalculadorController {
 		
 		for(int auxCandidatos = 0; auxCandidatos < listaDeCandidatos.size(); auxCandidatos++) {
 			
-			NodeList rootNodes = listaDeCandidatos.get(auxCandidatos).getCurriculo().getNos().getElementsByTagName("PREMIOS-TITULOS");
+			NodeList rootNodes = listaDeCandidatos.get(auxCandidatos).getXML().getCurriculo().getElementsByTagName("PREMIOS-TITULOS");
 			Node rootNode = rootNodes.item(0);
 			Element rootElement = (Element) rootNode;
 			
@@ -137,7 +144,7 @@ public class CalculadorController {
 		
 		for(int auxCandidatos = 0; auxCandidatos < listaDeCandidatos.size(); auxCandidatos++) {
 			
-			NodeList rootNodes = listaDeCandidatos.get(auxCandidatos).getCurriculo().getNos().getElementsByTagName("ARTIGO-PUBLICADO");	
+			NodeList rootNodes = listaDeCandidatos.get(auxCandidatos).getXML().getCurriculo().getElementsByTagName("ARTIGO-PUBLICADO");	
 			Node rootNode = rootNodes.item(0);
 			Element rootElement = (Element) rootNode;
 			
@@ -181,12 +188,11 @@ public class CalculadorController {
 	
 	
 	
-	
 	public void calculaModoEventos(boolean modoVerboso) throws IOException {
 		
 		for(int auxCandidatos = 0; auxCandidatos < listaDeCandidatos.size(); auxCandidatos++) {
 			
-			NodeList rootNodes = listaDeCandidatos.get(auxCandidatos).getCurriculo().getNos().getElementsByTagName("PARTICIPACAO-EM-EVENTOS-CONGRESSOS");	
+			NodeList rootNodes = listaDeCandidatos.get(auxCandidatos).getXML().getCurriculo().getElementsByTagName("PARTICIPACAO-EM-EVENTOS-CONGRESSOS");	
 			Node rootNode = rootNodes.item(0);
 			Element rootElement = (Element) rootNode;
 			
@@ -230,7 +236,7 @@ public class CalculadorController {
 			
 		for(int auxCandidatos = 0; auxCandidatos < listaDeCandidatos.size(); auxCandidatos++) {
 				
-			NodeList rootNodes = listaDeCandidatos.get(auxCandidatos).getCurriculo().getNos().getElementsByTagName("PARTICIPACAO-EM-EVENTOS-CONGRESSOS");
+			NodeList rootNodes = listaDeCandidatos.get(auxCandidatos).getXML().getCurriculo().getElementsByTagName("PARTICIPACAO-EM-EVENTOS-CONGRESSOS");
 			
 			Node rootNode = rootNodes.item(0);
 			Element rootElement = (Element) rootNode;
@@ -275,7 +281,7 @@ public class CalculadorController {
 		
 		for(int auxCandidatos = 0; auxCandidatos < listaDeCandidatos.size(); auxCandidatos++) {
 			
-			NodeList rootNodes = listaDeCandidatos.get(auxCandidatos).getCurriculo().getNos().getElementsByTagName("PARTICIPACAO-EM-EVENTOS-CONGRESSOS");		
+			NodeList rootNodes = listaDeCandidatos.get(auxCandidatos).getXML().getCurriculo().getElementsByTagName("PARTICIPACAO-EM-EVENTOS-CONGRESSOS");		
 			Node rootNode = rootNodes.item(0);
 			Element rootElement = (Element) rootNode;
 			
@@ -329,7 +335,6 @@ public class CalculadorController {
 
 	
 	
-	
 	public ArrayList<CandidatoModel> calculaRankingFinal() throws IOException {
 		
 		for (int i = 0; i < listaDeCandidatos.size() -1 ; i++){ 			// Algoritmo Bubble Sort para ordenar a lista que guarda a pontuação dos candidatos
@@ -345,5 +350,7 @@ public class CalculadorController {
 		return listaDeCandidatos;
 		
 	}
+	
+	
 	
 }
