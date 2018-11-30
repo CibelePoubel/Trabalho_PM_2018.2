@@ -81,7 +81,6 @@ public class CalculadorController {
      *   @return void */  
 	public void calculaModoCompleto(boolean modoVerboso) throws IOException {
 		
-		calculaPontuacaoSemestres();
 		calculaModoPremios(modoVerboso);
 		calculaModoArtigos(modoVerboso);
 		calculaModoEventos(modoVerboso);
@@ -400,12 +399,10 @@ public class CalculadorController {
 						listaDeCandidatos.get(auxCandidatos).setPontuacaoVinculoUnirio(listaDeCandidatos.get(auxCandidatos).getPontuacaoVinculoUnirio() + 1);		// Incrementa a pontuação do candidato
 					}
             
-					else {		 //  Caso o modo verboso não esteja ativado, nada deve ser escrito no arquivo txt de saída, somente incrementada a pontuação
-						listaDeCandidatos.get(auxCandidatos).setPontuacaoEventos(listaDeCandidatos.get(auxCandidatos).getPontuacaoVinculoUnirio() + 1);
+					else 		 //  Caso o modo verboso não esteja ativado, nada deve ser escrito no arquivo txt de saída, somente incrementada a pontuação
+						listaDeCandidatos.get(auxCandidatos).setPontuacaoVinculoUnirio(listaDeCandidatos.get(auxCandidatos).getPontuacaoVinculoUnirio() + 1);
 						
-					}
-				
-				}
+					}				
 			
 			}
 		
@@ -436,26 +433,28 @@ public class CalculadorController {
 					if(modoVerboso == true) {		  // Caso o modo verboso esteja ativado, imprime no arquivo txt de saída o nome e ano do artigo
 						
 						txtSaida.escreveArquivo("Candidato " + listaDeCandidatos.get(auxCandidatos).getNomeCandidato() + " é Mestre/Mestrando pela UNIRIO");
-						if(NoteElement.getAttribute("ANO-DE-CONCLUSAO") == "")
+						
+						if(NoteElement.getAttribute("ANO-DE-CONCLUSAO") == "") {
 							txtSaida.escreveArquivo("Ano de início: " + NoteElement.getAttribute("ANO-DE-INICIO") + ".Mestrado em andamento." );  // Escreve no arquivo o ano do evento
+							txtSaida.escreveArquivo("\n\n\n");
+						}
 						
-						else
-						txtSaida.escreveArquivo("Ano de conclusão: " +NoteElement.getAttribute("ANO-DE-CONCLUSAO"));  // Escreve no arquivo o ano do evento
-
-						txtSaida.escreveArquivo("\n\n\n");
+						else {
+							txtSaida.escreveArquivo("Ano de conclusão: " +NoteElement.getAttribute("ANO-DE-CONCLUSAO"));  // Escreve no arquivo o ano do evento
+							txtSaida.escreveArquivo("\n\n\n");
+						}
 						
-						listaDeCandidatos.get(auxCandidatos).setPontuacaoVinculoUnirio(listaDeCandidatos.get(auxCandidatos).getPontuacaoVinculoUnirio() + 1);		// Incrementa a pontuação do candidato
+						listaDeCandidatos.get(auxCandidatos).setPontuacaoVinculoUnirio(listaDeCandidatos.get(auxCandidatos).getPontuacaoVinculoUnirio() + 1);
+					
 					}
             
-					else {		 //  Caso o modo verboso não esteja ativado, nada deve ser escrito no arquivo txt de saída, somente incrementada a pontuação
-						listaDeCandidatos.get(auxCandidatos).setPontuacaoEventos(listaDeCandidatos.get(auxCandidatos).getPontuacaoVinculoUnirio() + 1);
+					else 		 //  Caso o modo verboso não esteja ativado, nada deve ser escrito no arquivo txt de saída, somente incrementada a pontuação
+						listaDeCandidatos.get(auxCandidatos).setPontuacaoVinculoUnirio(listaDeCandidatos.get(auxCandidatos).getPontuacaoVinculoUnirio() + 1);
 						
-					}
-				
 				}
+				
+			}			
 			
-			}
-		
 		}
 		
 		for(int auxCandidatos = 0; auxCandidatos < listaDeCandidatos.size(); auxCandidatos++) {
