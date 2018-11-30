@@ -1,15 +1,11 @@
 package View;
 
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 import Model.CandidatoModel;
@@ -92,7 +88,7 @@ public class PrincipalView {
 		txtSaida.escreveArquivo("\t\t\t Resultado do arquivo de saída:");  		  			     // Escrita inicial no arquivo de saída    
     	txtLog.escreveArquivo("\t\t\t Erros encontrados na execução do programa:");  		     // Escrita inicial no arquivo de log 
     	
-    	CalculadorController calculadorPontuacao = new CalculadorController(txtSaida, txtLog, listaDeCandidatos, modoCompleto, modoVerboso, modoPremios, modoArtigos, modoEventos, modoVinculoUnirio); 
+    	CalculadorController calculadorPontuacao = new CalculadorController(txtSaida, txtLog, listaDeCandidatos); 
     	
     	
     	calculadorPontuacao.calculaPontuacaoSemestres();									     // Chamada do método da classe CalculadorController para cálculo de pontuação por semestre sem reprovação dos candidatos

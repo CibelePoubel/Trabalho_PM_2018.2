@@ -27,14 +27,26 @@ public class CalculadorController {
 	private ArrayList<CandidatoModel> listaDeCandidatos = null;
 		
 	
-	
-	
-	public CalculadorController(SaidaModel txtSaida, LogModel txtLog, ArrayList<CandidatoModel> listaDeCandidatos, boolean modoCompleto, boolean modoVerboso, boolean modoPremios, boolean modoArtigos, boolean modoEventos, boolean modoVinculoUnirio) throws IOException {
+    /** Método construtor da classe CalculadorController. Recebe um arquivo de saída .txt, um arquivo de log .txt, uma lista de candidatos, e as variável booleana modoverboso que indica se o usuário deseja saída textual completa. Também chamado o método da própria classe CalculatorController para o preenchimento dos nomes dos candidatos.
+
+     *   @return void */  
+	public CalculadorController(SaidaModel txtSaida, LogModel txtLog, ArrayList<CandidatoModel> listaDeCandidatos) throws IOException {
 		
 		this.txtSaida = txtSaida;
 		this.txtLog = txtLog;
 		this.listaDeCandidatos = listaDeCandidatos;
 		
+		preencheNomesCandidatos(listaDeCandidatos);
+			
+	}
+	
+	
+	
+	
+    /** Método chamado no construtor da classe que preenche os nomes dos candidatos
+
+     *   @return void */  
+	public void preencheNomesCandidatos(ArrayList<CandidatoModel> listaDeCandidatos) {
 		
 		for(int auxCandidatos = 0; auxCandidatos < listaDeCandidatos.size(); auxCandidatos++) {
 			
@@ -64,6 +76,9 @@ public class CalculadorController {
 	
 	
 	
+    /** Método que chama todos os métodos de saída do programa
+
+     *   @return void */  
 	public void calculaModoCompleto(boolean modoVerboso) throws IOException {
 		calculaPontuacaoSemestres();
 		calculaModoPremios(modoVerboso);
@@ -75,6 +90,9 @@ public class CalculadorController {
 	
 	
 	
+    /** Método que calcula a pontuação por semestres sem reprovação dos candidatos
+
+     *   @return ArrayList<CandidatoModel> - listaDeCandidatos */  
 	public ArrayList<CandidatoModel> calculaPontuacaoSemestres() throws IOException {		// Método que calcula a quantidade de pontos por semestres sem reprovação
 		
 		for(int auxCandidatos = 0; auxCandidatos < listaDeCandidatos.size(); auxCandidatos++) { 
@@ -89,6 +107,9 @@ public class CalculadorController {
 	
 	
 	
+    /** Método que calcula a pontuação por prêmios obtidos dos candidatos
+
+     *   @return void */ 
 	public void calculaModoPremios(boolean modoVerboso) throws IOException {
 			
 		int anoLimiteValidade = 2008;			// Ano base para verificação de validade de prêmio (somente se considera prêmios ganhos há menos de 10 anos)
@@ -137,6 +158,9 @@ public class CalculadorController {
 	
 	
 	
+    /** Método que calcula a pontuação por artigos escritos dos candidatos
+
+     *   @return void */ 
 	public void calculaModoArtigos(boolean modoVerboso) throws IOException {
 		
 		int anoLimiteValidade = 2008;			// Ano base para verificação de validade de prêmio (somente se considera prêmios ganhos há menos de 10 anos)
@@ -188,6 +212,9 @@ public class CalculadorController {
 	
 	
 	
+    /** Método que calcula a pontuação por eventos participados dos candidatos
+
+     *   @return void */ 
 	public void calculaModoEventos(boolean modoVerboso) throws IOException {
 		
 		for(int auxCandidatos = 0; auxCandidatos < listaDeCandidatos.size(); auxCandidatos++) {
@@ -335,9 +362,12 @@ public class CalculadorController {
 
 	
 	
+    /** Método que calcula o ranking final dos candidatos
+
+     *   @return ArrayList<CandidatoModel> - listaDeCandidatos */ 
 	public ArrayList<CandidatoModel> calculaRankingFinal() throws IOException {
 		
-		for (int i = 0; i < listaDeCandidatos.size() -1 ; i++){ 			// Algoritmo Bubble Sort para ordenar a lista que guarda a pontuação dos candidatos
+		for (int i = 0; i < listaDeCandidatos.size() -1 ; i++){ 			  // Algoritmo Bubble Sort para ordenar a lista que guarda a pontuação dos candidatos
 			for (int j = 0; j < listaDeCandidatos.size() -i -1; j++) 
 			    if (listaDeCandidatos.get(j).getPontuacaoTotal() < listaDeCandidatos.get(j + 1).getPontuacaoTotal()) {                 
 			        CandidatoModel temp = listaDeCandidatos.get(j); 
@@ -347,7 +377,7 @@ public class CalculadorController {
 		
 		}
 		
-		return listaDeCandidatos;
+		return listaDeCandidatos;			// Retorna a lista dos candidatos ordenada por pontuação
 		
 	}
 	
