@@ -1,6 +1,5 @@
 package View;
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -8,9 +7,8 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
+import Model.ArquivoModel;
 import Model.CandidatoModel;
-import Model.LogModel;
-import Model.SaidaModel;
 import Controller.CalculadorController;
 
 public class PrincipalView {
@@ -23,8 +21,8 @@ public class PrincipalView {
     	int parametroAtual;  		// Guarda o parâmetro que está sendo atualmente lido
     	boolean modoCompleto = false, modoVerboso = false, modoPremios = false, modoArtigos = false, modoEventos = false, modoVinculoUnirio = false;   		// Guardam quais parâmetros foram passados pelo usuário para posterior call dos métodos da classe XML para cálculo da pontuação e exibição restrita aos modos requisitados
     	   	
-    	SaidaModel txtSaida = null;  		// Cria um objeto da classe Saida para posterior escrita da saída do programa
-    	LogModel txtLog = null;  		    // Cria um objeto da classe Log para posterior escrita do log de erros do programa
+    	ArquivoModel txtSaida = null;  		// Cria um objeto da classe Saida para posterior escrita da saída do programa
+    	ArquivoModel txtLog = null;  		    // Cria um objeto da classe Log para posterior escrita do log de erros do programa
     	
     	ArrayList<CandidatoModel> listaDeCandidatos = new ArrayList<CandidatoModel>();  			// Lista que guarda cada um dos arquivos XML contendo os currículos
     	
@@ -33,11 +31,11 @@ public class PrincipalView {
     		System.out.println(args[parametroAtual]);
     		
             if (args[parametroAtual].equalsIgnoreCase("-o"))   			 // Verifica se o parâmetro é igual a -o (ignorando se este for digitado em maiúsculo ou minúsculo). Caso seja, a próxima posição dos argumentos indica o caminho do arquivo de saída           
-            	txtSaida = new SaidaModel(args[parametroAtual + 1]);  		 // Cria um objeto da classe SaidaModel para posterior escrita da saída do programa          
+            	txtSaida = new ArquivoModel(args[parametroAtual + 1]);  		 // Cria um objeto da classe SaidaModel para posterior escrita da saída do programa          
                   
             
             if (args[parametroAtual].equalsIgnoreCase("-l"))    		// Verifica se o parâmetro é igual a -l (ignorando se este for digitado em maiúsculo ou minúsculo). Caso seja, a próxima posição dos argumentos indica o caminho do arquivo de log      	
-            	txtLog = new LogModel(args[parametroAtual + 1]);      	
+            	txtLog = new ArquivoModel(args[parametroAtual + 1]);      	
                             	
             
             if(args[parametroAtual].equalsIgnoreCase("-a")) {  		    // Verifica se o parâmetro é gual a -a (ignorando se este for digitado em maiúsculo ou minúsculo). Caso seja, a próxima posição dos argumentos indica o caminho do currículo em XML           
@@ -83,7 +81,7 @@ public class PrincipalView {
     /** Método que analisa quais foram os parâmetros passados pelo usuário e chama os métodos correspondentes na classe CalculadorController
 
      *   @return void */   
-	private static void analisaSaidasSolicitadas(SaidaModel txtSaida, LogModel txtLog, ArrayList<CandidatoModel> listaDeCandidatos , boolean modoCompleto, boolean modoVerboso, boolean modoPremios, boolean modoArtigos, boolean modoEventos, boolean modoVinculoUnirio) throws IOException {
+	private static void analisaSaidasSolicitadas(ArquivoModel txtSaida, ArquivoModel txtLog, ArrayList<CandidatoModel> listaDeCandidatos , boolean modoCompleto, boolean modoVerboso, boolean modoPremios, boolean modoArtigos, boolean modoEventos, boolean modoVinculoUnirio) throws IOException {
 		
 		txtSaida.escreveArquivo("\t\t\t Resultado do arquivo de saída:");  		  			     // Escrita inicial no arquivo de saída    
     	txtLog.escreveArquivo("\t\t\t Erros encontrados na execução do programa:");  		     // Escrita inicial no arquivo de log 
@@ -133,7 +131,7 @@ public class PrincipalView {
     /** Método que imprime no arquivo .txt de saída a pontuação total dos candidatos, sem ordenação
 
      *   @return void */   
-	private static void imprimePontuacaoGeral(SaidaModel txtSaida, LogModel txtLog, ArrayList<CandidatoModel> listaDeCandidatos) throws IOException {
+	private static void imprimePontuacaoGeral(ArquivoModel txtSaida, ArquivoModel txtLog, ArrayList<CandidatoModel> listaDeCandidatos) throws IOException {
 		
     	txtSaida.escreveArquivo("---------------------------------------------------------------------------------------------------------------");
 		
@@ -148,7 +146,7 @@ public class PrincipalView {
     /** Método que imprime no arquivo .txt de saída a pontuação total dos candidatos, já ordenados de acordo com o ranking final (maiores notas)
 
      *   @return void */   
-	private static void imprimeRankingFinal(SaidaModel txtSaida, LogModel txtLog, ArrayList<CandidatoModel> listaDeCandidatos) throws IOException {	
+	private static void imprimeRankingFinal(ArquivoModel txtSaida, ArquivoModel txtLog, ArrayList<CandidatoModel> listaDeCandidatos) throws IOException {	
     	
 		txtSaida.escreveArquivo("***************************************************************************************************************");
 		txtSaida.escreveArquivo("\t\t\t\t\t RANKING FINAL DOS CANDIDATOS:");

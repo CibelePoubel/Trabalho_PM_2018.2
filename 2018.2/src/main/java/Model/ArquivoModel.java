@@ -3,32 +3,53 @@ package Model;
  * 
  * @author Cibele
  * 
- * Classe abstrata que define quais métodos um arquivo deve possuir, para que depois sejam sobrescritos nas classes filhas.
+ * Classe filha da classe ArquivoModel, que possui métodos sobrescritos específicos da classe Log (arquivo de log de erros do programa)
  *
  */
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 
-import javax.xml.parsers.ParserConfigurationException;
+public class ArquivoModel {
 
-import org.xml.sax.SAXException;
-
-public abstract class ArquivoModel {
+	private String caminhoDoArquivo;		// String que guarda o caminho especificado pelo usuário para salvamento dos arquivos (saída e log)
 	
-	protected String caminhoDoArquivo;			// Variável que guarda a String de caminho de salvamento/leitura do arquivo
+    /** Método construtor da classe LogModel. Recebe o caminho desejado pelo usuário para salvamento do arquivo .txt
+
+     *   @return void */  
+	public ArquivoModel(String caminhoDoArquivo) {			
 		
+		this.caminhoDoArquivo = caminhoDoArquivo;
+			
+	}
 	
-    /** Método que efetua a escrita da String passada no arquivo
+	
+	
+    /** Método que efetua a escrita da String passada no arquivo .txt
 
      *   @return void */ 
-	public abstract void escreveArquivo(String texto) throws IOException;       
+	public void escreveArquivo(String texto) throws IOException {  			  
+		
+		BufferedWriter arquivo = new BufferedWriter(new FileWriter(caminhoDoArquivo, true));         // Cria o arquivo de log de erros
+		
+		arquivo.write(texto);  		     // Escreve o texto passado (variável texto) para o método
+		arquivo.newLine(); 		         // Cria uma nova linha de texto dentro do arquivo de log
+		arquivo.close();  			     // Fecha a escrita do arquivo
+		
+	}
 	
 	
-    /** Método que retorna o caminho de salvamento/leitura do arquivo 
+	
+    /** Método que retorna o caminho de salvamento/leitura do arquivo de log 
 
      *   @return String - CaminhoDoArquivo */  
-	public abstract String getCaminhoDoArquivo();  	   
-	
+	public String getCaminhoDoArquivo() {		  
+		
+		return caminhoDoArquivo;		     // Retorna a string com o caminho do arquivo .txt de log
+		
+	}
+
 	
 	
 }

@@ -7,7 +7,6 @@ package Model;
  *
  */
 
-
 import java.io.IOException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -19,7 +18,7 @@ public class CandidatoModel {
 	private int semestresSemReprovacao = 0;			// Int que recebe o número de semestres sem reprovação inseridos pelo usuário
 	private String nomeCandidato;				    // Guarda o nome do candidato para facilitar a identificação das saídas e ranking de pontuações
 	private int pontuacaoTotal = 0, pontuacaoSemestresSemReprovacao = 0, pontuacaoPremios = 0, pontuacaoArtigos = 0, pontuacaoEventos = 0, pontuacaoVinculoUnirio = 0;			// Variáveis que guardam a pontuação de cada saída
-	private XMLModel xml = null;		// Arquivo XML que guarda o currículo do candidato
+	private CurriculoModel xml = null;		// Arquivo XML que guarda o currículo do candidato
 	
 	
     /** Método construtor da classe CandidatoModel. Recebe o número de semestres sem reprovação inserido pelo usuário e o caminho para criação do XML de currículo associado a este candidato
@@ -28,7 +27,7 @@ public class CandidatoModel {
 		
 		this.semestresSemReprovacao = semestresSemReprovacao;
 		
-		xml = new XMLModel(caminhoXML);
+		xml = new CurriculoModel(caminhoXML);
 			
 	}
 
@@ -182,7 +181,7 @@ public class CandidatoModel {
     /** Método que retorna a variável com o arquivo XML que contém o currículo do candidato
 
      *   @return XMLModel - xml */ 
-	public XMLModel getXML() {
+	public CurriculoModel getXML() {
 		return xml;
 	}
 		
