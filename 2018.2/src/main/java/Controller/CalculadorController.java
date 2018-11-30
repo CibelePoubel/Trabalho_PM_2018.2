@@ -80,10 +80,12 @@ public class CalculadorController {
 
      *   @return void */  
 	public void calculaModoCompleto(boolean modoVerboso) throws IOException {
+		
 		calculaPontuacaoSemestres();
 		calculaModoPremios(modoVerboso);
 		calculaModoArtigos(modoVerboso);
 		calculaModoEventos(modoVerboso);
+		calculaModoVinculoUnirio(modoVerboso);
 		
 	}
 	
@@ -93,7 +95,7 @@ public class CalculadorController {
     /** Método que calcula a pontuação por semestres sem reprovação dos candidatos
 
      *   @return ArrayList<CandidatoModel> - listaDeCandidatos */  
-	public ArrayList<CandidatoModel> calculaPontuacaoSemestres() throws IOException {		// Método que calcula a quantidade de pontos por semestres sem reprovação
+	public ArrayList<CandidatoModel> calculaPontuacaoSemestres() throws IOException {		
 		
 		for(int auxCandidatos = 0; auxCandidatos < listaDeCandidatos.size(); auxCandidatos++) { 
 			listaDeCandidatos.get(auxCandidatos).setPontuacaoSemestresSemReprovacao(listaDeCandidatos.get(auxCandidatos).getSemestresSemReprovacao());		
@@ -244,15 +246,15 @@ public class CalculadorController {
 				if(modoVerboso == true) {		  // Caso o modo verboso esteja ativado, imprime no arquivo txt de saída o nome e ano do artigo
 						
 					txtSaida.escreveArquivo("Evento referente ao currículo de " + listaDeCandidatos.get(auxCandidatos).getNomeCandidato());
-					txtSaida.escreveArquivo("Nome do simpósio: " +NoteElement2.getAttribute("NOME-DO-EVENTO"));  // Escreve no arquivo o nome do evento
-					txtSaida.escreveArquivo("Ano do simpósio: " +NoteElement.getAttribute("ANO"));  // Escreve no arquivo o ano do evento
+					txtSaida.escreveArquivo("Nome do simpósio: " +NoteElement2.getAttribute("NOME-DO-EVENTO"));  		// Escreve no arquivo o nome do evento
+					txtSaida.escreveArquivo("Ano do simpósio: " +NoteElement.getAttribute("ANO"));  					// Escreve no arquivo o ano do evento
 
 					txtSaida.escreveArquivo("\n\n\n");
 						
 					listaDeCandidatos.get(auxCandidatos).setPontuacaoEventos(listaDeCandidatos.get(auxCandidatos).getPontuacaoEventos() + 1);		// Incrementa a pontuação do candidato
 				}
             
-				else {		 //  Caso o modo verboso não esteja ativado, nada deve ser escrito no arquivo txt de saída, somente incrementada a pontuação
+				else {		   //  Caso o modo verboso não esteja ativado, nada deve ser escrito no arquivo txt de saída, somente incrementada a pontuação
 					listaDeCandidatos.get(auxCandidatos).setPontuacaoEventos(listaDeCandidatos.get(auxCandidatos).getPontuacaoEventos() + 1);
 						
 				}
@@ -360,6 +362,114 @@ public class CalculadorController {
 	}
 		
 
+	
+    /** Método que calcula a pontuação por vínculos com a UNIRIO (Formação Acadêmica e Projetos de Pesquisa)
+
+     *   @return void */ 
+	public void calculaModoVinculoUnirio(boolean modoVerboso) throws IOException {
+		
+		for(int auxCandidatos = 0; auxCandidatos < listaDeCandidatos.size(); auxCandidatos++) {
+			
+			NodeList rootNodes = listaDeCandidatos.get(auxCandidatos).getXML().getCurriculo().getElementsByTagName("ATIVIDADES-DE-PARTICIPACAO-EM-PROJETO");	
+			Node rootNode = rootNodes.item(0);
+			Element rootElement = (Element) rootNode;
+			
+			if(rootElement == null) {	
+				break;
+			}
+			
+			NodeList notesList = rootElement.getElementsByTagName("PROJETO-DE-PESQUISA");
+			
+			
+			for(int i = 0; i < notesList.getLength(); i++) {
+				Node theNote = notesList.item(i);
+				Element NoteElement = (Element) theNote;			
+				
+				String descricaoVinculo;
+				descricaoVinculo = NoteElement.getAttribute("DESCRICAO-DO-PROJETO");
+				
+				if((descricaoVinculo.contains("unirio")) || (descricaoVinculo.contains("Unirio")) || (descricaoVinculo.contains("UNIRIO"))  || (descricaoVinculo.contains("UniRio"))) {
+					if(modoVerboso == true) {		  // Caso o modo verboso esteja ativado, imprime no arquivo txt de saída o nome e ano do artigo
+						
+						txtSaida.escreveArquivo("Vínculo com a UNIRIO referente ao currículo de " + listaDeCandidatos.get(auxCandidatos).getNomeCandidato());
+						txtSaida.escreveArquivo("Nome do Projeto de Pesquisa: " +NoteElement.getAttribute("NOME-DO-PROJETO"));  // Escreve no arquivo o nome do evento
+						txtSaida.escreveArquivo("Ano do vínculo: " +NoteElement.getAttribute("ANO-INICIO"));  // Escreve no arquivo o ano do evento
+
+						txtSaida.escreveArquivo("\n\n\n");
+						
+						listaDeCandidatos.get(auxCandidatos).setPontuacaoVinculoUnirio(listaDeCandidatos.get(auxCandidatos).getPontuacaoVinculoUnirio() + 1);		// Incrementa a pontuação do candidato
+					}
+            
+					else {		 //  Caso o modo verboso não esteja ativado, nada deve ser escrito no arquivo txt de saída, somente incrementada a pontuação
+						listaDeCandidatos.get(auxCandidatos).setPontuacaoEventos(listaDeCandidatos.get(auxCandidatos).getPontuacaoVinculoUnirio() + 1);
+						
+					}
+				
+				}
+			
+			}
+		
+		}
+		
+		
+		for(int auxCandidatos = 0; auxCandidatos < listaDeCandidatos.size(); auxCandidatos++) {
+			
+			NodeList rootNodes = listaDeCandidatos.get(auxCandidatos).getXML().getCurriculo().getElementsByTagName("FORMACAO-ACADEMICA-TITULACAO");	
+			Node rootNode = rootNodes.item(0);
+			Element rootElement = (Element) rootNode;
+			
+			if(rootElement == null) {	
+				break;
+			}
+			
+			NodeList notesList = rootElement.getElementsByTagName("MESTRADO");
+			
+			
+			for(int i = 0; i < notesList.getLength(); i++) {
+				Node theNote = notesList.item(i);
+				Element NoteElement = (Element) theNote;			
+				
+				String nomeInstituicao;
+				nomeInstituicao = NoteElement.getAttribute("NOME-INSTITUICAO");
+				
+				if((nomeInstituicao.contains("unirio")) || (nomeInstituicao.contains("Unirio")) || (nomeInstituicao.contains("UNIRIO"))  || (nomeInstituicao.contains("UniRio") || (nomeInstituicao.contains("Universidade Federal do Estado do Rio de Janeiro")))) {
+					if(modoVerboso == true) {		  // Caso o modo verboso esteja ativado, imprime no arquivo txt de saída o nome e ano do artigo
+						
+						txtSaida.escreveArquivo("Candidato " + listaDeCandidatos.get(auxCandidatos).getNomeCandidato() + " é Mestre/Mestrando pela UNIRIO");
+						if(NoteElement.getAttribute("ANO-DE-CONCLUSAO") == "")
+							txtSaida.escreveArquivo("Ano de início: " + NoteElement.getAttribute("ANO-DE-INICIO") + ".Mestrado em andamento." );  // Escreve no arquivo o ano do evento
+						
+						else
+						txtSaida.escreveArquivo("Ano de conclusão: " +NoteElement.getAttribute("ANO-DE-CONCLUSAO"));  // Escreve no arquivo o ano do evento
+
+						txtSaida.escreveArquivo("\n\n\n");
+						
+						listaDeCandidatos.get(auxCandidatos).setPontuacaoVinculoUnirio(listaDeCandidatos.get(auxCandidatos).getPontuacaoVinculoUnirio() + 1);		// Incrementa a pontuação do candidato
+					}
+            
+					else {		 //  Caso o modo verboso não esteja ativado, nada deve ser escrito no arquivo txt de saída, somente incrementada a pontuação
+						listaDeCandidatos.get(auxCandidatos).setPontuacaoEventos(listaDeCandidatos.get(auxCandidatos).getPontuacaoVinculoUnirio() + 1);
+						
+					}
+				
+				}
+			
+			}
+		
+		}
+		
+		for(int auxCandidatos = 0; auxCandidatos < listaDeCandidatos.size(); auxCandidatos++) {
+			if(listaDeCandidatos.get(auxCandidatos).getPontuacaoVinculoUnirio() > 2)
+				listaDeCandidatos.get(auxCandidatos).setPontuacaoTotal(2);
+			
+			else
+				listaDeCandidatos.get(auxCandidatos).setPontuacaoTotal(listaDeCandidatos.get(auxCandidatos).getPontuacaoVinculoUnirio());
+		
+		}
+		
+	}
+	
+	
 	
 	
     /** Método que calcula o ranking final dos candidatos

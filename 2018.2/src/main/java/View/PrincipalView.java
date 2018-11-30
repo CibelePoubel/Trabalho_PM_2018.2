@@ -112,6 +112,9 @@ public class PrincipalView {
     		
     		if(modoEventos == true)
     			calculadorPontuacao.calculaModoEventos(modoVerboso); 			// Chamada do método da classe CalculadorController para cálculo de pontuação por eventos  		
+    	
+    		if(modoVinculoUnirio == true)			
+    			calculadorPontuacao.calculaModoVinculoUnirio(modoVerboso); 		// Chamada do método da classe CalculadorController para cálculo de pontuação de vínculos com a UNIRIO 		
     	}
     		
     	

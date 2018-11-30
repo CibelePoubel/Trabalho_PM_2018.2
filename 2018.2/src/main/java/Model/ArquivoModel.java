@@ -21,13 +21,13 @@ public abstract class ArquivoModel {
     /** Método que efetua a escrita da String passada no arquivo
 
      *   @return void */ 
-	public abstract void escreveArquivo(String texto) throws IOException;       // Método abstrato que é sobrescrito nas classes filhas que define como deve o padrão de escrita de arquivos.
+	public abstract void escreveArquivo(String texto) throws IOException;       
 	
 	
     /** Método que retorna o caminho de salvamento/leitura do arquivo 
 
      *   @return String - CaminhoDoArquivo */  
-	public abstract String getCaminhoDoArquivo();  	    // Método que retorna o caminho onde se encontra o arquivo
+	public abstract String getCaminhoDoArquivo();  	   
 	
 	
 	

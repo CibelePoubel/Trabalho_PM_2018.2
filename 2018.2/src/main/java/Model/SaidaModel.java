@@ -17,7 +17,7 @@ public class SaidaModel extends ArquivoModel {
     /** Método construtor da classe SaidaModel. Recebe o caminho desejado pelo usuário para salvamento do arquivo .txt de saída (resultado do programa)
 
      *   @return void */  
-	public SaidaModel(String caminhoDoArquivo) {			// Método construtor da classe Saida. Recebe o caminho que o usuário especificou para a criação do arquivo txt de saída
+	public SaidaModel(String caminhoDoArquivo) {			
 		
 		this.caminhoDoArquivo = caminhoDoArquivo;
 			
@@ -29,7 +29,7 @@ public class SaidaModel extends ArquivoModel {
 
      *   @return void */ 
 	@Override
-	public void escreveArquivo(String texto) throws IOException {  		     // Método sobrescrito da classe Arquivo que recebe o caminho que o usuário indicou para salvamento do arquivo e o texto a ser adicionado.
+	public void escreveArquivo(String texto) throws IOException {  		     
 			
 		BufferedWriter arquivoSaida = new BufferedWriter(new FileWriter(caminhoDoArquivo, true));      // Cria o arquivo de saída
 		
@@ -45,9 +45,9 @@ public class SaidaModel extends ArquivoModel {
 
      *   @return String - CaminhoDoArquivo */  
 	@Override
-	public String getCaminhoDoArquivo() {		  // Método que retorna o caminho onde se encontra o arquivo de saída
+	public String getCaminhoDoArquivo() {		
 		
-		return caminhoDoArquivo;
+		return caminhoDoArquivo;			 // Retorna a string com o caminho do arquivo .txt de saída
 		
 	}
 	

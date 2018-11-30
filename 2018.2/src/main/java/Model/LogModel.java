@@ -23,7 +23,7 @@ public class LogModel extends ArquivoModel {
     /** Método construtor da classe LogModel. Recebe o caminho desejado pelo usuário para salvamento do arquivo .txt de log (erros do programa)
 
      *   @return void */  
-	public LogModel(String caminhoDoArquivo) {			// Método construtor da classe Log. Recebe o caminho que o usuário especificou para a criação do arquivo txt de log
+	public LogModel(String caminhoDoArquivo) {			
 		
 		this.caminhoDoArquivo = caminhoDoArquivo;
 			
@@ -35,7 +35,7 @@ public class LogModel extends ArquivoModel {
 
      *   @return void */ 
 	@Override
-	public void escreveArquivo(String texto) throws IOException {  			  // Método sobrescrito da classe Arquivo que recebe o caminho que o usuário indicou para salvamento do log de erros e o texto a ser adicionado.
+	public void escreveArquivo(String texto) throws IOException {  			  
 		
 		BufferedWriter arquivoLog = new BufferedWriter(new FileWriter(caminhoDoArquivo, true));         // Cria o arquivo de log de erros
 		
@@ -51,9 +51,9 @@ public class LogModel extends ArquivoModel {
 
      *   @return String - CaminhoDoArquivo */  
 	@Override
-	public String getCaminhoDoArquivo() {		  // Método que retorna o caminho onde se encontra o arquivo de Log
+	public String getCaminhoDoArquivo() {		  
 		
-		return caminhoDoArquivo;
+		return caminhoDoArquivo;		     // Retorna a string com o caminho do arquivo .txt de log
 		
 	}
 

@@ -36,7 +36,7 @@ public class XMLModel extends ArquivoModel {
 
      *   @return void */ 	
 	@Override
-	public void escreveArquivo(String texto) {
+	public void escreveArquivo(String texto) {			
 	}
 	
 	
@@ -57,7 +57,7 @@ public class XMLModel extends ArquivoModel {
 
      *   @return Document - curriculo */ 
 	public Document getCurriculo() {
-		return curriculo;
+		return curriculo;						    // Retorna o documento com o XML do currículo
 	}
 	
 	
