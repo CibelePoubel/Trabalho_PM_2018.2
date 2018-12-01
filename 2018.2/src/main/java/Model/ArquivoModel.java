@@ -3,8 +3,8 @@ package Model;
  * 
  * @author Cibele
  * 
- * Classe filha da classe ArquivoModel, que possui métodos sobrescritos específicos da classe Log (arquivo de log de erros do programa)
- *
+ * Classe que cria um arquivo para posterior escrita
+ * *
  */
 
 import java.io.BufferedWriter;
@@ -16,8 +16,8 @@ public class ArquivoModel {
 	private String caminhoDoArquivo;		// String que guarda o caminho especificado pelo usuário para salvamento dos arquivos (saída e log)
 	
     /** Método construtor da classe LogModel. Recebe o caminho desejado pelo usuário para salvamento do arquivo .txt
-
-     *   @return void */  
+     *  @param - Caminho para salvamento do arquivo .txt
+     *  @return void */  
 	public ArquivoModel(String caminhoDoArquivo) {			
 		
 		this.caminhoDoArquivo = caminhoDoArquivo;
@@ -27,7 +27,7 @@ public class ArquivoModel {
 	
 	
     /** Método que efetua a escrita da String passada no arquivo .txt
-
+     *   @param - Texto a ser escrito no arquivo .txt
      *   @return void */ 
 	public void escreveArquivo(String texto) throws IOException {  			  
 		

@@ -39,7 +39,9 @@ public class CalculadorController {
 		
 	
     /** Método construtor da classe CalculadorController. Recebe um arquivo de saída .txt, um arquivo de log .txt, uma lista de candidatos, e as variável booleana modoverboso que indica se o usuário deseja saída textual completa. Também chamado o método da própria classe CalculatorController para o preenchimento dos nomes dos candidatos.
-
+     *   @param - Arquivo .txt de saída do programa
+     *   @param - Arquivo .txt de log do pragrama
+     *   @param - Lista de todos os candidatos
      *   @return void */  
 	public CalculadorController(ArquivoModel txtSaida, ArquivoModel txtLog, ArrayList<CandidatoModel> listaDeCandidatos) throws IOException {
 		
@@ -55,7 +57,7 @@ public class CalculadorController {
 	
 	
     /** Método chamado no construtor da classe que preenche os nomes dos candidatos
-
+     *   @param - Lista de todos os candidatos
      *   @return void */  
 	public void preencheNomesCandidatos(ArrayList<CandidatoModel> listaDeCandidatos) {
 		
@@ -88,7 +90,7 @@ public class CalculadorController {
 	
 	
     /** Método que chama todos os métodos de saída do programa
-
+     *   @param - Boolean que indica se o usuário deseja saída verbosa (true) ou não (false)
      *   @return void */  
 	public void calculaModoCompleto(boolean modoVerboso) throws IOException {
 		
@@ -103,7 +105,7 @@ public class CalculadorController {
 	
 	
     /** Método que calcula a pontuação por semestres sem reprovação dos candidatos
-
+     *   @param - Lista de todos os candidatos
      *   @return ArrayList<CandidatoModel> - listaDeCandidatos */  
 	public ArrayList<CandidatoModel> calculaPontuacaoSemestres() throws IOException {		
 		
@@ -120,7 +122,7 @@ public class CalculadorController {
 	
 	
     /** Método que calcula a pontuação por prêmios obtidos dos candidatos
-
+     *   @param - Boolean que indica se o usuário deseja saída verbosa (true) ou não (false)
      *   @return void */ 
 	public void calculaModoPremios(boolean modoVerboso) throws IOException {
 				
@@ -168,7 +170,7 @@ public class CalculadorController {
 	
 	
     /** Método que calcula a pontuação por artigos escritos dos candidatos
-
+     *   @param - Boolean que indica se o usuário deseja saída verbosa (true) ou não (false)
      *   @return void */ 
 	public void calculaModoArtigos(boolean modoVerboso) throws IOException {	
 		
@@ -219,7 +221,7 @@ public class CalculadorController {
 	
 	
     /** Método que calcula a pontuação por eventos participados dos candidatos
-
+     *   @param - Boolean que indica se o usuário deseja saída verbosa (true) ou não (false)
      *   @return void */ 
 	public void calculaModoEventos(boolean modoVerboso) throws IOException {
 		
@@ -368,7 +370,7 @@ public class CalculadorController {
 
 	
     /** Método que calcula a pontuação por vínculos com a UNIRIO (Formação Acadêmica e Projetos de Pesquisa)
-
+     *   @param - Boolean que indica se o usuário deseja saída verbosa (true) ou não (false)
      *   @return void */ 
 	public void calculaModoVinculoUnirio(boolean modoVerboso) throws IOException {
 		

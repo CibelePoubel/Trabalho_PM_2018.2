@@ -3,7 +3,7 @@ package Model;
  * 
  * @author Cibele
  * 
- * Classe que guarda informação sobre os semestres sem reprovação de cada candidato e possui um currículo
+ * Classe que guarda informação sobre os semestres sem reprovação e pontuação de cada candidato. Possui também um currículo associado.
  *
  */
 
@@ -18,10 +18,12 @@ public class CandidatoModel {
 	private int semestresSemReprovacao = 0;			// Int que recebe o número de semestres sem reprovação inseridos pelo usuário
 	private String nomeCandidato;				    // Guarda o nome do candidato para facilitar a identificação das saídas e ranking de pontuações
 	private int pontuacaoTotal = 0, pontuacaoSemestresSemReprovacao = 0, pontuacaoPremios = 0, pontuacaoArtigos = 0, pontuacaoEventos = 0, pontuacaoVinculoUnirio = 0;			// Variáveis que guardam a pontuação de cada saída
-	private CurriculoModel xml = null;		// Arquivo XML que guarda o currículo do candidato
+	private CurriculoModel xml = null;				// Arquivo XML que guarda o currículo do candidato
 	
 	
     /** Método construtor da classe CandidatoModel. Recebe o número de semestres sem reprovação inserido pelo usuário e o caminho para criação do XML de currículo associado a este candidato
+     *   @param - Caminho do arquivo XML, necessário para se passar de parâmetro ao construtor da classe Curriculo
+     *   @param - Variável que guarda o número de semestres sem reprovação do candidato
      *   @return void */  
 	public CandidatoModel(String caminhoXML, int semestresSemReprovacao ) throws SAXException, IOException, ParserConfigurationException {			// Método construtor da classe Log. Recebe o caminho que o usuário especificou para a criação do arquivo txt de log
 		
@@ -61,7 +63,7 @@ public class CandidatoModel {
 
 
     /** Método que recebe e seta na variável a pontuação por prêmios
-
+     *   @param - Recebe a pontuação por prêmios a ser setada no objeto de Candidato
      *   @return void */
 	public void setPontuacaoPremios(int pontuacaoPremios) {
 		this.pontuacaoPremios = pontuacaoPremios;
@@ -79,7 +81,7 @@ public class CandidatoModel {
 
 	
     /** Método que recebe e seta na variável a pontuação por artigos
-
+     *   @param - Recebe a pontuação por artigos a ser setada no objeto de Candidato
      *   @return void */
 	public void setPontuacaoArtigos(int pontuacaoArtigos) {
 		this.pontuacaoArtigos = pontuacaoArtigos;
@@ -97,7 +99,7 @@ public class CandidatoModel {
 
 
     /** Método que recebe e seta na variável a pontuação por eventos
-
+     *   @param - Recebe a pontuação por eventos a ser setada no objeto de Candidato
      *   @return void */
 	public void setPontuacaoEventos(int pontuacaoEventos) {
 		this.pontuacaoEventos = pontuacaoEventos;
@@ -115,7 +117,7 @@ public class CandidatoModel {
 
 
     /** Método que recebe e seta na variável a pontuação por vínculos com a UNIRIO
-
+     *   @param - Recebe a pontuação por vínculos com a UNIRIO a ser setada no objeto de Candidato
      *   @return void */
 	public void setPontuacaoVinculoUnirio(int pontuacaoVinculoUnirio) {
 		this.pontuacaoVinculoUnirio = pontuacaoVinculoUnirio;
@@ -124,7 +126,7 @@ public class CandidatoModel {
 
 
     /** Método que recebe e seta na variável a quantidade de semestres sem reprovação do candidato
-
+     *   @param - Recebe a pontuação por semestres sem reprovação a ser setada no objeto de Candidato
      *   @return void */
 	public void setSemestresSemReprovacao(int semestresSemReprovacao) {
 		this.semestresSemReprovacao = semestresSemReprovacao;
@@ -144,7 +146,7 @@ public class CandidatoModel {
 
 	
     /** Método que recebe e seta na variável a pontuação total do candidato
-
+     *   @param - Recebe a pontuação total ser setada no objeto de Candidato
      *   @return void */
 	public void setPontuacaoTotal(int pontuacaoTotal) {
 		this.pontuacaoTotal = this.pontuacaoTotal + pontuacaoTotal;
@@ -171,7 +173,7 @@ public class CandidatoModel {
 
 	
     /** Método que recebe e seta na variável o nome do candidato
-
+     *   @param - Recebe o nome a ser setado no objeto de Candidato
      *   @return void */
 	public void setNomeCandidato(String nomeCandidato) {
 		this.nomeCandidato = nomeCandidato;

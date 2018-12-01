@@ -13,11 +13,51 @@ import Controller.CalculadorController;
 
 public class PrincipalView {
  
-    /** Método main do programa. Recebe os parâmetros digitados pelo usuário e seta as booleanas das saídas em true ou false para posterior chamada do método de análise das saídas
-
-     *   @return void */   
+	private static PrincipalView principal= null;
+	
+	
+	/** Método construtor da classe PrincipalView. Declarado como private pois é utilizado o design pattern Singleton.
+     
+     *  @return void */ 
+    private PrincipalView() {
+    	
+    }
+	
+    
+    
+    
+	/** Método que verifica se já existe um objeto da classe PrincipalView, caso negativo, cria um objeto. Caso afirmativo, retorna o objeto existente. (Característica do design pattern Singleton)
+    
+     *  @return void */ 
+    public static PrincipalView getPrincipal() {
+    	
+    	if(principal == null)
+    		principal = new PrincipalView();
+    	
+    	return principal;
+    	
+    }
+	
+	
+	
+    
+	/** Método main do programa. Cria um objeto da classe PrincipalView e chama seu método recebeParametrosPassados para comparação dos argumentos passados pelo usuário
+     *  @param String [] args - Argumentos que o usuário especificou de saída
+     *  @return void */   
     public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException {      	// Inicia a execuação do programa para a passagem de argumentos
         	
+    	PrincipalView principal = new PrincipalView();
+    	
+    	principal.recebeParametrosPassados(args);
+   	
+    }
+    
+    
+    
+    /** Recebe os parâmetros digitados pelo usuário e seta as booleanas das saídas em true ou false para posterior chamada do método de análise das saídas
+    
+     *  @return void */  
+    private void recebeParametrosPassados(String [] args) throws IOException, NumberFormatException, SAXException, ParserConfigurationException {
     	int parametroAtual;  		// Guarda o parâmetro que está sendo atualmente lido
     	boolean modoCompleto = false, modoVerboso = false, modoPremios = false, modoArtigos = false, modoEventos = false, modoVinculoUnirio = false;   		// Guardam quais parâmetros foram passados pelo usuário para posterior call dos métodos da classe XML para cálculo da pontuação e exibição restrita aos modos requisitados
     	   	
@@ -75,13 +115,16 @@ public class PrincipalView {
         }
     	
     	analisaSaidasSolicitadas(txtSaida, txtLog, listaDeCandidatos, modoCompleto, modoVerboso, modoPremios, modoArtigos, modoEventos, modoVinculoUnirio);			// Chama o método da própria classe PrincipalView para que sejam analisados os parâmetros das saídas requeridas pelo usuário
-   	
+    	
     }
     
+    
+    
+    
     /** Método que analisa quais foram os parâmetros passados pelo usuário e chama os métodos correspondentes na classe CalculadorController
-
+     
      *   @return void */   
-	private static void analisaSaidasSolicitadas(ArquivoModel txtSaida, ArquivoModel txtLog, ArrayList<CandidatoModel> listaDeCandidatos , boolean modoCompleto, boolean modoVerboso, boolean modoPremios, boolean modoArtigos, boolean modoEventos, boolean modoVinculoUnirio) throws IOException {
+	private void analisaSaidasSolicitadas(ArquivoModel txtSaida, ArquivoModel txtLog, ArrayList<CandidatoModel> listaDeCandidatos , boolean modoCompleto, boolean modoVerboso, boolean modoPremios, boolean modoArtigos, boolean modoEventos, boolean modoVinculoUnirio) throws IOException {
 		
 		txtSaida.escreveArquivo("\t\t\t Resultado do arquivo de saída:");  		  			     // Escrita inicial no arquivo de saída    
     	txtLog.escreveArquivo("\t\t\t Erros encontrados na execução do programa:");  		     // Escrita inicial no arquivo de log 
@@ -129,9 +172,9 @@ public class PrincipalView {
 	
 	
     /** Método que imprime no arquivo .txt de saída a pontuação total dos candidatos, sem ordenação
-
+     
      *   @return void */   
-	private static void imprimePontuacaoGeral(ArquivoModel txtSaida, ArquivoModel txtLog, ArrayList<CandidatoModel> listaDeCandidatos) throws IOException {
+	private void imprimePontuacaoGeral(ArquivoModel txtSaida, ArquivoModel txtLog, ArrayList<CandidatoModel> listaDeCandidatos) throws IOException {
 		
     	txtSaida.escreveArquivo("---------------------------------------------------------------------------------------------------------------");
 		
@@ -144,9 +187,9 @@ public class PrincipalView {
 	
 	
     /** Método que imprime no arquivo .txt de saída a pontuação total dos candidatos, já ordenados de acordo com o ranking final (maiores notas)
-
+    
      *   @return void */   
-	private static void imprimeRankingFinal(ArquivoModel txtSaida, ArquivoModel txtLog, ArrayList<CandidatoModel> listaDeCandidatos) throws IOException {	
+	private void imprimeRankingFinal(ArquivoModel txtSaida, ArquivoModel txtLog, ArrayList<CandidatoModel> listaDeCandidatos) throws IOException {	
     	
 		txtSaida.escreveArquivo("***************************************************************************************************************");
 		txtSaida.escreveArquivo("\t\t\t\t\t RANKING FINAL DOS CANDIDATOS:");

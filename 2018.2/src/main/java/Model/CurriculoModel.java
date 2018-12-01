@@ -3,7 +3,7 @@ package Model;
  * 
  * @author Cibele
  * 
- * Classe filha da classe ArquivoModel, que possui métodos sobrescritos específicos da classe XML (arquivo de currículo do candidato)
+ * Classe dos currículos associados aos candidatos
  *
  */
 
@@ -23,7 +23,7 @@ public class CurriculoModel {
 	
 	
     /** Método construtor da classe XMLModel. Recebe o caminho indicado pelo usuário para leitura do arquivo XML de currículo dos candidatos.
-
+     *   @param - Caminho para leitura do arquivo XML
      *   @return void */  
 	public CurriculoModel(String caminhoXML) throws SAXException, IOException, ParserConfigurationException{		// Método construtor da classe XML. Recebe o caminho do arquivo XML e a quantidade de semestres sem reprovação passada pelo usuário
 		
